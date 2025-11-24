@@ -24,12 +24,12 @@ uvicorn app.main:app --reload
 1. Install Ollama and start the server (OLLAMA_HOST defaults to http://localhost:11434)
 2. Pull a model, e.g.:
 ```bash
-ollama pull llama3
+ollama pull llama3.2
 ```
 3. Set `.env` values if needed:
 ```bash
 OLLAMA_HOST=http://localhost:11434
-OLLAMA_MODEL=llama3
+OLLAMA_MODEL=llama3.2
 OLLAMA_TEMPERATURE=0.4
 ```
 4. The chat endpoint will use the local model automatically.

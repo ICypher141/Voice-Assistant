@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     smtp_use_tls: bool = Field(True, env="SMTP_USE_TLS")
     # Ollama configuration
     ollama_host: str = Field("http://localhost:11434", env="OLLAMA_HOST")
-    ollama_model: str = Field("llama3", env="OLLAMA_MODEL")
+    ollama_model: str = Field("llama3.2", env="OLLAMA_MODEL")
     ollama_temperature: float = Field(0.4, env="OLLAMA_TEMPERATURE")
 
     class Config:
