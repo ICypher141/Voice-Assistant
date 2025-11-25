@@ -5,3 +5,5 @@ pydantic-settings==2.6.1
 python-multipart==0.0.9
 ollama==0.3.3
 email-validator==2.1.1
+openai-whisper==20231117
+gtts==2.5.1

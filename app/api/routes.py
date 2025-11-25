@@ -1,5 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from fastapi import UploadFile, File
+from fastapi.responses import Response
 from app.models.schemas import ChatRequest, ChatResponse, TTSRequest, EmailRequest
 from app.services.chat import ChatService
 from app.services.stt import SpeechToTextService
@@ -27,10 +28,24 @@ async def stt(file: UploadFile = File(...)):
 
 @router.post("/tts")
 async def tts(request: TTSRequest):
+    """
+    Convert text to speech and return audio file that can be played directly.
+    Returns MP3 audio that browsers can play automatically.
+    """
     service = TextToSpeechService()
     try:
-        audio_bytes, content_type = await service.synthesize(request.text, request.voice)
-        return {"content_type": content_type, "audio_base64": audio_bytes}
+        audio_bytes = await service.synthesize(request.text, request.voice)
+        content_type = service.get_content_type()
+        
+        # Return audio file directly as streaming response
+        return Response(
+            content=audio_bytes,
+            media_type=content_type,
+            headers={
+                "Content-Disposition": 'inline; filename="speech.mp3"',
+                "Accept-Ranges": "bytes"
+            }
+        )
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
