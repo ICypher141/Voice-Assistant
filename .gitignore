@@ -1,0 +1,112 @@
+# ---------------------------------------
+# Python & Virtual Environment
+# ---------------------------------------
+.venv/
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pdb
+
+# Byte-compiled / optimized / DLL files
+*.so
+*.dll
+*.dylib
+
+# ---------------------------------------
+# Project & Build
+# ---------------------------------------
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+
+# ---------------------------------------
+# Packaging
+# ---------------------------------------
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ---------------------------------------
+# Logs
+# ---------------------------------------
+*.log
+logs/
+
+# ---------------------------------------
+# Jupyter Notebook
+# ---------------------------------------
+.ipynb_checkpoints/
+*.ipynb_meta
+
+# ---------------------------------------
+# PyInstaller
+# ---------------------------------------
+*.manifest
+*.spec
+
+# ---------------------------------------
+# Unit test / coverage reports
+# ---------------------------------------
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+pytest_cache/
+coverage.xml
+
+# ---------------------------------------
+# IDEs & Editors
+# ---------------------------------------
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# ---------------------------------------
+# ML & Data Files
+# ---------------------------------------
+*.h5
+*.hdf5
+*.ckpt
+*.pth
+*.pt
+*.tflite
+*.onnx
+*.pb
+*.joblib
+*.model
+*.bin
+*.csv
+*.tsv
+datasets/
+data/
+output/
+models/
+
+# ---------------------------------------
+# Environment / Dependency files
+# ---------------------------------------
+.env
+.env.*
+.envrc
+
+# ---------------------------------------
+# OS files
+# ---------------------------------------
+.DS_Store
+Thumbs.db
