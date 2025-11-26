@@ -20,6 +20,26 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     reply: str = Field(..., description="The assistant's reply")
 
+class RAGRequest(BaseModel):
+    query: str = Field(..., description="Question for the knowledge base")
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {"query": "How do I configure the voice assistant?"},
+                {"query": "What endpoints does the API provide?"}
+            ]
+        }
+    }
+
+class RAGSource(BaseModel):
+    source: str = Field(..., description="Document reference for the snippet")
+    preview: str = Field(..., description="Short excerpt from the document")
+
+class RAGResponse(BaseModel):
+    answer: str = Field(..., description="Assistant answer grounded in documents")
+    sources: list[RAGSource] = Field(default_factory=list, description="Supporting snippets")
+
 class TTSRequest(BaseModel):
     text: str = Field(..., description="The text to convert to speech")
     voice: Optional[str] = Field(None, description="Voice type (optional)")

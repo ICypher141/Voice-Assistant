@@ -13,6 +13,11 @@ class Settings(BaseSettings):
     ollama_host: str = Field("http://localhost:11434", env="OLLAMA_HOST")
     ollama_model: str = Field("llama3.2", env="OLLAMA_MODEL")
     ollama_temperature: float = Field(0.4, env="OLLAMA_TEMPERATURE")
+    # Retrieval-Augmented Generation (RAG)
+    rag_documents_dir: str = Field("knowledge_base", env="RAG_DOCUMENTS_DIR")
+    rag_embedding_model: str = Field("nomic-embed-text", env="RAG_EMBEDDING_MODEL")
+    rag_top_k: int = Field(3, ge=1, le=10, env="RAG_TOP_K")
+    rag_min_score: float = Field(0.25, ge=0.0, le=1.0, env="RAG_MIN_SCORE")
 
     class Config:
         env_file = ".env"

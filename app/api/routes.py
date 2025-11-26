@@ -1,11 +1,19 @@
 from fastapi import APIRouter, HTTPException
 from fastapi import UploadFile, File
 from fastapi.responses import Response
-from app.models.schemas import ChatRequest, ChatResponse, TTSRequest, EmailRequest
+from app.models.schemas import (
+    ChatRequest,
+    ChatResponse,
+    RAGRequest,
+    RAGResponse,
+    TTSRequest,
+    EmailRequest,
+)
 from app.services.chat import ChatService
 from app.services.stt import SpeechToTextService
 from app.services.tts import TextToSpeechService
 from app.services.email_service import EmailService
+from app.services.rag import RAGService
 import asyncio
 
 router = APIRouter()
@@ -16,6 +24,14 @@ async def chat(request: ChatRequest):
     # Offload blocking LLM call to a worker thread
     reply = await asyncio.get_event_loop().run_in_executor(None, service.generate_reply, request.message)
     return ChatResponse(reply=reply)
+
+@router.post("/rag", response_model=RAGResponse)
+async def rag(request: RAGRequest):
+    service = RAGService()
+    answer, sources = await asyncio.get_event_loop().run_in_executor(
+        None, service.answer, request.query
+    )
+    return RAGResponse(answer=answer, sources=sources)
 
 @router.post("/stt")
 async def stt(file: UploadFile = File(...)):
